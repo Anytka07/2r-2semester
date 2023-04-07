@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Classification</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<h2>Students</h2>
+<form name="studentForm">
+    <input type="hidden" name="id" value="0" />
+    <div class="form-group">
+        <label for="special">special:</label>
+        <input class="form-control" name="special" />
+    </div>
+    <div class="form-group">
+        <label for="viddilenya">viddilenya:</label>
+        <input class="form-control" name="viddilenya" />
+    </div>
+    <div class="form-group">
+        <label for="numberOfStudent">numberOfStudent:</label>
+        <input class="form-control" name="numberOfStudent" />
+    </div>
+    <div class="panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+        <a id="reset" class="btn btn-sm btn-primary">Delete</a>
+    </div>
+</form>
+<table class="table table-condensed table-striped table-bordered">
+    <thead><tr><th>Id</th><th>special</th><th>viddilenya</th><th>numberOfStudent</th><th></th></tr></thead>
+    <tbody>
+    </tbody>
+</table>
+
+<a href = "index.html">Back...</a>
+
+<script>
+// Получение всех пользователей
+async function getStudents() {
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/api/students", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const Students = await response.json();
+                let rows = document.querySelector("tbody"); 
+                Students.forEach(student => {
+                    // добавляем полученные элементы в таблицу
+                    rows.append(row(student));
+                });
+            }
+        }
+    // Получение одного пользователя
+    async function getStudent(id) {
+        const response = await fetch("/api/students/" + id, {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        });
+        if (response.ok === true) {
+            const student = await response.json();
+            const form = document.forms["studentForm"];
+            form.elements["id"].value = student._id;
+            form.elements["special"].value = student.special;
+            form.elements["viddilenya"].value = student.viddilenya;
+            form.elements["numberOfStudent"].value = student.numberOfStudent;
+        }
+    }
+
+    // Добавление пользователя
+    async function createStudent(studentSpecial,studentViddilenya, studentNumberOfStudent) {
+
+        const response = await fetch("/api/students", {
+            method: "post",
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({
+                special: studentSpecial,
+                viddilenya: parseInt(studentViddilenya, 10),
+                numberOfStudent: parseInt(studentNumberOfStudent, 10)
+            })
+        });
+        if (response.ok === true) {
+            const student = await response.json();
+            reset();
+            document.querySelector("tbody").append(row(student));
+        }
+    }
+    // Изменение пользователя
+    async function editStudent(studentId,studentSpecial, studentViddilenya, studentNumberOfStudent) {
+        const response = await fetch("/api/students", {
+            method: "PUT",
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({
+                id: studentId,
+                special: studentSpecial,
+                viddilenya: parseInt(studentViddilenya, 10),
+                numberOfStudent: parseInt(studentNumberOfStudent, 10)    
+            })
+        });
+        if (response.ok === true) {
+            const student = await response.json();
+            reset();
+            document.querySelector(`tr[data-rowid='${student._id}']`).replaceWith(row(student));
+        }
+    }
+    // Удаление пользователя
+    async function deleteStudent(id) {
+        const response = await fetch("/api/students/" + id, {
+            method: "DELETE",
+            headers: { "Accept": "application/json" }
+        });
+        if (response.ok === true) {
+            const student = await response.json();
+            document.querySelector(`tr[data-rowid='${student._id}']`).remove();
+        }
+    }
+
+    // сброс формы
+    function reset() {
+        const form = document.forms["studentForm"];
+        form.reset();
+        form.elements["id"].value = 0;
+    }
+    // создание строки для таблицы
+    function row(student) {
+
+        const tr = document.createElement("tr");
+        tr.setAttribute("data-rowid", student._id);
+
+        const idTd = document.createElement("td");
+        idTd.append(student._id);
+        tr.append(idTd);
+
+        const specialTd = document.createElement("td");
+        specialTd.append(student.special);
+        tr.append(specialTd);
+
+        const viddilenyaTd = document.createElement("td");
+        viddilenyaTd.append(student.viddilenya);
+        tr.append(viddilenyaTd);
+
+        const numberOfStudentTd = document.createElement("td");
+        numberOfStudentTd.append(student.numberOfStudent);
+        tr.append(numberOfStudentTd);
+           
+        const linksTd = document.createElement("td");
+
+        const editLink = document.createElement("a");
+        editLink.setAttribute("data-id", student._id);
+        editLink.setAttribute("style", "cursor:pointer;padding:15px;");
+        editLink.append("Изменить");
+        editLink.addEventListener("click", e => {
+
+            e.preventDefault();
+            getStudent(student._id);
+        });
+        linksTd.append(editLink);
+
+        const removeLink = document.createElement("a");
+        removeLink.setAttribute("data-id", student._id);
+        removeLink.setAttribute("style", "cursor:pointer;padding:15px;");
+        removeLink.append("Delete");
+        removeLink.addEventListener("click", e => {
+
+            e.preventDefault();
+            deleteStudent(student._id);
+        });
+
+        linksTd.append(removeLink);
+        tr.appendChild(linksTd);
+
+        return tr;
+    }
+    // сброс значений формы
+    document.getElementById("reset").addEventListener("click", e => {
+
+        e.preventDefault();
+        reset();
+    })
+
+    // отправка формы
+    document.forms["studentForm"].addEventListener("submit", e => {
+        e.preventDefault();
+        const form = document.forms["studentForm"];
+        const id = form.elements["id"].value;
+        const special = form.elements["special"].value;
+        const viddilenya = form.elements["viddilenya"].value;
+        const numberOfStudent = form.elements["numberOfStudent"].value;
+        if (id == 0)
+            createStudent(special, viddilenya, numberOfStudent);
+        else
+            editStudent(id, special, viddilenya, numberOfStudent);
+    });
+
+    // загрузка пользователей
+    getStudents();
+</script>
+</body>
+</html>

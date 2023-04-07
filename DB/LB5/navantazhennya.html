@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Classification</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+<h2>Navantazhennya</h2>
+<form name="navantazhennyaForm">
+    <input type="hidden" name="id" value="0" />
+    <div class="form-group">
+        <label for="number">number:</label>
+        <input class="form-control" name="number" />
+    </div>
+    <div class="form-group">
+        <label for="predmet">predmet:</label>
+        <input class="form-control" name="predmet" />
+    </div>
+    <div class="form-group">
+        <label for="type">type:</label>
+        <input class="form-control" name="type" />
+    </div>
+    <div class="panel-body">
+        <button type="submit" class="btn btn-sm btn-primary">Save</button>
+        <a id="reset" class="btn btn-sm btn-primary">Delete</a>
+    </div>
+</form>
+<table class="table table-condensed table-striped table-bordered">
+    <thead><tr><th>Id</th><th>Number</th><th>Predmet</th><th>Type</th><th></th></tr></thead>
+    <tbody>
+    </tbody>
+</table>
+
+<a href = "index.html">Back...</a>
+
+<script>
+// Получение всех пользователей
+async function getHours() {
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/api/navantazhennya", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const Hours = await response.json();
+                let rows = document.querySelector("tbody"); 
+                Hours.forEach(hour => {
+                    // добавляем полученные элементы в таблицу
+                    rows.append(row(hour));
+                });
+            }
+        }
+    // Получение одного пользователя
+    async function getHour(id) {
+        const response = await fetch("/api/navantazhennya/" + id, {
+            method: "GET",
+            headers: { "Accept": "application/json" }
+        });
+        if (response.ok === true) {
+            const hour = await response.json();
+            const form = document.forms["navantazhennyaForm"];
+            form.elements["id"].value = hour._id;
+            form.elements["number"].value = hour.number;
+            form.elements["predmet"].value = hour.predmet;
+            form.elements["type"].value = hour.type;
+        }
+    }
+
+    // Добавление пользователя
+    async function createHour(hourNumber,hourPredmet, hourType) {
+
+        const response = await fetch("/api/navantazhennya", {
+            method: "post",
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({
+                number: parseInt(hourNumber, 10),
+                predmet: hourPredmet,
+                type: hourType
+            })
+        });
+        if (response.ok === true) {
+            const hour = await response.json();
+            reset();
+            document.querySelector("tbody").append(row(hour));
+        }
+    }
+    // Изменение пользователя
+    async function editHour(hourId,hourNumber,hourPredmet, hourType) {
+        const response = await fetch("/api/navantazhennya", {
+            method: "PUT",
+            headers: { "Accept": "application/json", "Content-Type": "application/json" },
+            body: JSON.stringify({
+                id: hourId,
+                number: parseInt(hourNumber, 10),
+                predmet: hourPredmet,
+                type: hourType  
+            })
+        });
+        if (response.ok === true) {
+            const hour = await response.json();
+            reset();
+            document.querySelector(`tr[data-rowid='${hour._id}']`).replaceWith(row(hour));
+        }
+    }
+    // Удаление пользователя
+    async function deleteHour(id) {
+        const response = await fetch("/api/navantazhennya/" + id, {
+            method: "DELETE",
+            headers: { "Accept": "application/json" }
+        });
+        if (response.ok === true) {
+            const hour = await response.json();
+            document.querySelector(`tr[data-rowid='${hour._id}']`).remove();
+        }
+    }
+
+    // сброс формы
+    function reset() {
+        const form = document.forms["navantazhennyaForm"];
+        form.reset();
+        form.elements["id"].value = 0;
+    }
+    // создание строки для таблицы
+    function row(hour) {
+
+        const tr = document.createElement("tr");
+        tr.setAttribute("data-rowid", hour._id);
+
+        const idTd = document.createElement("td");
+        idTd.append(hour._id);
+        tr.append(idTd);
+
+        const numberTd = document.createElement("td");
+        numberTd.append(hour.number);
+        tr.append(numberTd);
+
+        const predmetTd = document.createElement("td");
+        predmetTd.append(hour.predmet);
+        tr.append(predmetTd);
+
+        const typeTd = document.createElement("td");
+        typeTd.append(hour.type);
+        tr.append(typeTd);
+           
+        const linksTd = document.createElement("td");
+
+        const editLink = document.createElement("a");
+        editLink.setAttribute("data-id", hour._id);
+        editLink.setAttribute("style", "cursor:pointer;padding:15px;");
+        editLink.append("Изменить");
+        editLink.addEventListener("click", e => {
+
+            e.preventDefault();
+            getHour(hour._id);
+        });
+        linksTd.append(editLink);
+
+        const removeLink = document.createElement("a");
+        removeLink.setAttribute("data-id", hour._id);
+        removeLink.setAttribute("style", "cursor:pointer;padding:15px;");
+        removeLink.append("Delete");
+        removeLink.addEventListener("click", e => {
+
+            e.preventDefault();
+            deleteHour(hour._id);
+        });
+
+        linksTd.append(removeLink);
+        tr.appendChild(linksTd);
+
+        return tr;
+    }
+    // сброс значений формы
+    document.getElementById("reset").addEventListener("click", e => {
+
+        e.preventDefault();
+        reset();
+    })
+
+    // отправка формы
+    document.forms["navantazhennyaForm"].addEventListener("submit", e => {
+        e.preventDefault();
+        const form = document.forms["navantazhennyaForm"];
+        const id = form.elements["id"].value;
+        const number = form.elements["number"].value;
+        const predmet = form.elements["predmet"].value;
+        const type = form.elements["type"].value;
+        if (id == 0)
+            createHour(number, predmet, type);
+        else
+            editHour(id, number, predmet, type);
+    });
+
+    // загрузка пользователей
+    getHours();
+</script>
+</body>
+</html>

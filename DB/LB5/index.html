@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Classification</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+
+<h2>Teachers</h2>
+    <form name="teacherForm">
+        <input type="hidden" name="id" value="0" />
+        <div class="form-group">
+            <label for="surname">surname:</label>
+            <input class="form-control" name="surname" />
+        </div>
+        <div class="form-group">
+            <label for="name">name:</label>
+            <input class="form-control" name="name" />
+        </div>
+        <div class="form-group">
+            <label for="telephone">telephone:</label>
+            <input class="form-control" name="telephone" />
+        </div>
+        <div class="form-group">
+            <label for="stage">stage:</label>
+            <input class="form-control" name="stage" />
+        </div>
+        <div class="panel-body">
+            <button type="submit" class="btn btn-sm btn-primary">Save</button>
+            <a id="reset" class="btn btn-sm btn-primary">Delete</a>
+        </div>
+    </form>
+    <table class="table table-condensed table-striped table-bordered">
+        <thead><tr><th>Id</th><th>surname</th><th>name</th><th>telephone</th><th>stage</th><th></th></tr></thead>
+        <tbody>
+        </tbody>
+    </table>
+<a href = "student.html">Students</a>
+<a href = "navantazhennya.html">Navantazhennya</a>
+<script>
+
+    // Получение всех пользователей
+    async function getTeachers() {
+            // отправляет запрос и получаем ответ
+            const response = await fetch("/api/teachers", {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            // если запрос прошел нормально
+            if (response.ok === true) {
+                // получаем данные
+                const Teachers = await response.json();
+                let rows = document.querySelector("tbody"); 
+                Teachers.forEach(teacher => {
+                    // добавляем полученные элементы в таблицу
+                    rows.append(row(teacher));
+                });
+            }
+        }
+        // Получение одного пользователя
+        async function getTeacher(id) {
+            const response = await fetch("/api/teachers/" + id, {
+                method: "GET",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                const teacher = await response.json();
+                const form = document.forms["teacherForm"];
+                form.elements["id"].value = teacher._id;
+                form.elements["surname"].value = teacher.surname;
+                form.elements["name"].value = teacher.name;
+                form.elements["telephone"].value = teacher.telephone;
+                form.elements["stage"].value = teacher.stage;
+            }
+        }
+        // Добавление пользователя
+        async function createTeacher(teacherSurname, teacherName, teacherTelephone,teacherStage) {
+   
+            const response = await fetch("/api/teachers", {
+                method: "post",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    surname: teacherSurname,
+                    name: teacherName,
+                    telephone: parseInt(teacherTelephone,10),
+                    stage: parseInt(teacherStage,10)
+                })
+            });
+            if (response.ok === true) {
+                const teacher = await response.json();
+                reset();
+                document.querySelector("tbody").append(row(teacher));
+            }
+        }
+        // Изменение пользователя
+        async function editTeacher(teacherId,teacherSurname, teacherName, teacherTelephone, teacherStage) {
+            const response = await fetch("/api/teachers", {
+                method: "put",
+                headers: { "Accept": "application/json", "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    id: teacherId,
+                    surname: teacherSurname,
+                    name: teacherName,
+                    telephone: parseInt(teacherTelephone,10),
+                    stage: parseInt(teacherStage,10)
+                })
+            });
+            if (response.ok === true) {
+                const teacher = await response.json();
+                reset();
+                document.querySelector(`tr[data-rowid='${teacher._id}']`).replaceWith(row(teacher));
+            }
+        }
+        // Удаление пользователя
+        async function deleteTeacher(id) {
+            const response = await fetch("/api/teachers/" + id, {
+                method: "DELETE",
+                headers: { "Accept": "application/json" }
+            });
+            if (response.ok === true) {
+                const teacher = await response.json();
+                document.querySelector(`tr[data-rowid='${teacher._id}']`).remove();
+            }
+        }
+   
+        // сброс формы
+        function reset() {
+            const form = document.forms["teacherForm"];
+            form.reset();
+            form.elements["id"].value = 0;
+        }
+        // создание строки для таблицы
+        function row(teacher) {
+   
+            const tr = document.createElement("tr");
+            tr.setAttribute("data-rowid", teacher._id);
+   
+            const idTd = document.createElement("td");
+            idTd.append(teacher._id);
+            tr.append(idTd);
+   
+            const surnameTd = document.createElement("td");
+            surnameTd.append(teacher.surname);
+            tr.append(surnameTd);
+
+            const nameTd = document.createElement("td");
+            nameTd.append(teacher.name);
+            tr.append(nameTd);
+   
+            const telephoneTd = document.createElement("td");
+            telephoneTd.append(teacher.telephone);
+            tr.append(telephoneTd);
+
+            const stageTd = document.createElement("td");
+            stageTd.append(teacher.stage);
+            tr.append(stageTd);
+               
+            const linksTd = document.createElement("td");
+   
+            const editLink = document.createElement("a");
+            editLink.setAttribute("data-id", teacher._id);
+            editLink.setAttribute("style", "cursor:pointer;padding:15px;");
+            editLink.append("Изменить");
+            editLink.addEventListener("click", e => {
+   
+                e.preventDefault();
+                getTeacher(teacher._id);
+            });
+            linksTd.append(editLink);
+   
+            const removeLink = document.createElement("a");
+            removeLink.setAttribute("data-id", teacher._id);
+            removeLink.setAttribute("style", "cursor:pointer;padding:15px;");
+            removeLink.append("Delete");
+            removeLink.addEventListener("click", e => {
+   
+                e.preventDefault();
+                deleteTeacher(teacher._id);
+            });
+   
+            linksTd.append(removeLink);
+            tr.appendChild(linksTd);
+   
+            return tr;
+        }
+        // сброс значений формы
+        document.getElementById("reset").addEventListener("click", e => {
+   
+            e.preventDefault();
+            reset();
+        })
+   
+        // отправка формы
+        document.forms["teacherForm"].addEventListener("submit", e => {
+            e.preventDefault();
+            const form = document.forms["teacherForm"];
+            const id = form.elements["id"].value;
+            const surname = form.elements["surname"].value;
+            const name = form.elements["name"].value;
+            const telephone = form.elements["telephone"].value;
+            const stage = form.elements["stage"].value;
+            if (id == 0)
+                createTeacher(surname, name, telephone, stage);
+            else
+                editTeacher(id, surname, name, telephone, stage);
+        });
+   
+        // загрузка пользователей
+        getTeachers();
+</script>
+
+</body>
+</html>
