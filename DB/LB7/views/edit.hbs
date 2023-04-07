@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редагувати викладача</title>
+    <meta charset="utf-8" />
+    <style>.field{width:180px;}</style>
+</head>
+<body>
+    <h1>Редагувати викладача</h1>
+     <form action="/edit" method="POST">
+        <input type="hidden" name="id" value="{{teacher.id}}" />
+        <label>Прізвище</label><br>
+        <input name="Surname" value="{{teacher.Surname}}"  class="field" /><br>
+        <label>Ім'я</label><br>
+        <input name="NameTeach" value="{{teacher.NameTeach}}"  class="field" /><br>
+         <label>По-батькові</label><br>
+         <input name="LastName" value="{{teacher.LastName}}"  class="field" /><br>
+         <label>Телефон</label><br>
+        <input name="Telephon" type="number" min="1" value="{{teacher.Telephon}}"  class="field" /><br>
+        <label>Стаж</label><br>
+        <input name="Stage" type="number" min="1" value="{{teacher.Stage}}"  class="field" /><br><br>
+        <input type="submit" value="Відправити" />
+     </form>
+     <a href="/">До списку викладачів</a>
+
+</body>
+<html>

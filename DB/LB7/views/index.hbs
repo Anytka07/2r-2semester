@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Список </title>
+    <meta charset="utf-8" />
+</head>
+<body>
+    <h1>Список вчителів</h1>
+       <a href="/">До списку викладачів</a>
+    <p><a href="/create">Додати викладача</a></p>
+    <table>
+        <tr><th>Surname</th><th>NameTeach</th><th>LastName</th><th>Telephon</th><th>Stage</th><th></th></tr>
+        {{#each teachers}}
+            <tr>
+                <td>{{this.Surname}}</td>
+                <td>{{this.NameTeach}}</td>
+                <td>{{this.LastName}}</td>
+                <td>{{this.Telephon}}</td>
+                <td>{{this.Stage}}</td>
+                <td>
+                    <a href="/edit/{{this.id}}">Edit</a>|
+                    <form action="delete/{{this.id}}" method="POST" style="display:inline;">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+    <br><br>    <br><br>    <br><br>
+
+
+<h1>Список студентів</h1>
+<a href="/1">До списку груп</a>
+    <p><a href="/create1">Додати групу</a></p>
+    <table>
+        <tr><th>Special</th><th>Viddilenya</th><th>NumberOfStudents</th><th></th></tr>
+        {{#each students}}
+            <tr>
+                <td>{{this.Special}}</td>
+                <td>{{this.Viddilenya}}</td>
+                <td>{{this.NumberOfStudents}}</td>
+                <td>
+                    <a href="/edit1/{{this.Id}}">Edit</a>|
+                    <form action="delete1/{{this.Id}}" method="POST" style="display:inline;">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+<br><br>    <br><br>    <br><br>
+
+<h1>Навантаження</h1>
+<a href="/2">До списку навантажень</a>
+    <p><a href="/create2">Додати навантаження</a></p>
+    <table>
+        <tr><th>StudentsId</th><th>TeachersId</th><th>NumOfHours</th><th>Predmet</th><th>TypeZanyttya</th><th>Oplata</th><th></th></tr>
+        {{#each navantazhennya}}
+            <tr>
+                <td>{{this.StudentsId}}</td>
+                <td>{{this.TeachersId}}</td>
+                <td>{{this.NumOfHours}}</td>
+                <td>{{this.Predmet}}</td>
+                <td>{{this.TypeZanyttya}}</td>
+                <td>{{this.Oplata}}</td>
+                <td>
+                    <a href="/edit2/{{this.Id}}">Edit</a>|
+                    <form action="delete2/{{this.Id}}" method="POST" style="display:inline;">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+</body>
+<html>

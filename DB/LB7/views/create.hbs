@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Добавление пользователя</title>
+    <meta charset="utf-8" />
+    <style>.field{width:180px;}</style>
+</head>
+<body>
+    <h1>Додавання викладача</h1>
+     <form method="POST">
+        <label>Прізвище</label><br>
+        <input name="Surname" class="field"/><br><br>
+        <label>Ім'я</label><br>
+        <input name="NameTeach"class="field"/><br>
+        <label>По-батькові</label><br>
+        <input name="LastName" class="field"/><br><br>
+        <label>Телефон</label><br>
+        <input name="Telephon" type="number" class="field" min="1" /><br>
+        <label>Стаж</label><br>
+        <input name="Stage" type="number" class="field" min="1" max="110" /><br><br>
+        <input type="submit" value="Отправить" />
+     </form>
+     <a href="/">До списку викладачів</a>
+
+</body>
+<html>

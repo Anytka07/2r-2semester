@@ -1,0 +1,28 @@
+ <!DOCTYPE html>
+<html>
+<head>
+    <title>Список груп</title>
+    <meta charset="utf-8" />
+</head>
+<body>
+ <h1>Список студентів</h1>
+    <p><a href="/create1">Додати групу</a></p>
+    <table>
+        <tr><th>Special</th><th>Viddilenya</th><th>NumberOfStudents</th><th></th></tr>
+        {{#each students}}
+            <tr>
+                <td>{{this.Special}}</td>
+                <td>{{this.Viddilenya}}</td>
+                <td>{{this.NumberOfStudents}}</td>
+                <td>
+                    <a href="/edit1/{{this.Id}}">Edit</a>|
+                    <form action="delete/{{this.Id}}" method="POST" style="display:inline;">
+                        <input type="submit" value="Delete" />
+                    </form>
+                </td>
+            </tr>
+        {{/each}}
+    </table>
+
+</body>
+<html>

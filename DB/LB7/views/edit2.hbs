@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редагувати групу</title>
+    <meta charset="utf-8" />
+    <style>.field{width:180px;}</style>
+</head>
+<body>
+     <h1>Редагувати навантаження</h1>
+     <form action="/edit2" method="POST">
+        <input type="hidden" name="Id" value="{{hour.Id}}" />
+        <label>СтудентІD</label><br>
+        <input name="StudentsId" type="number" value="{{hour.StudentsId}}"  class="field" /><br>
+        <label>ВчительID</label><br>
+        <input name="TeachersId" type="number" value="{{hour.TeachersId}}"  class="field" /><br>
+        <label>К-сть годин</label><br>
+        <input name="NumOfHours" type="number" value="{{hour.NumOfHours}}"  class="field" /><br>
+        <label>Предмет</label><br>
+        <input name="Predmet" value="{{hour.Predmet}}"  class="field" /><br>
+        <label>Тип заняття</label><br>
+        <input name="TypeZanyttya" value="{{hour.TypeZanyttya}}"  class="field" /><br>
+        <label>Оплата</label><br>
+        <input name="Oplata" type="number" min="1" value="{{hour.Oplata}}"  class="field" /><br><br>
+        <input type="submit" value="Відправити" />
+     </form>
+     <a href="/2">До списку груп</a>
+</body>
+<html>

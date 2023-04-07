@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редагувати групу</title>
+    <meta charset="utf-8" />
+    <style>.field{width:180px;}</style>
+</head>
+<body>
+     <h1>Редагувати групу</h1>
+     <form action="/edit1" method="POST">
+        <input type="hidden" name="Id" value="{{student.Id}}" />
+        <label>Спеціальність</label><br>
+        <input name="Special" value="{{student.Special}}"  class="field" /><br>
+        <label>Відділення</label><br>
+        <input name="Viddilenya" type="number" min="1" value="{{student.Viddilenya}}"  class="field" /><br>
+        <label>К-сть студентів</label><br>
+        <input name="NumberOfStudents" type="number" min="1" value="{{student.NumberOfStudents}}"  class="field" /><br><br>
+        <input type="submit" value="Відправити" />
+     </form>
+     <a href="/1">До списку груп</a>
+</body>
+<html>
