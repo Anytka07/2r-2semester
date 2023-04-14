@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редагувати предмет викладача</title>
+    <meta charset="utf-8" />
+    <style>.field{width:180px;}</style>
+</head>
+<body>
+     <h1>Редагувати предмет викладача</h1>
+     <form action="/edit3" method="POST">
+        <input type="hidden" name="id" value="{{teacherpredmet.id}}" />
+        <label>Назва предмету</label><br>
+        <input name="namepredmet" value="{{teacherpredmet.namepredmet}}"  class="field" /><br>
+        <label>Стаж</label><br>
+        <input name="stage" type="number" min="1" value="{{teacherpredmet.stage}}"  class="field" /><br>
+        <label>Id викладача</label><br>
+        <input name="teachersid" type="number" min="1" value="{{teacherpredmet.teachersid}}"  class="field" /><br><br>
+        <input type="submit" value="Відправити" />
+     </form>
+     <a href="/3">До списку груп</a>
+</body>
+<html>

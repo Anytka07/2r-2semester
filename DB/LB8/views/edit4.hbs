@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Редагувати предмет</title>
+    <meta charset="utf-8" />
+    <style>.field{width:180px;}</style>
+</head>
+<body>
+     <h1>Редагувати предмет</h1>
+     <form action="/edit4" method="POST">
+        <label>Предмет</label><br>
+        <input name="namepredmet" value="{{predmet.namepredmet}}"  class="field" /><br><br>
+        <label>Погодинна оплата</label><br>
+        <input name="hoursoplata" value="{{predmet.hoursoplata}}"  class="field" /><br><br>
+        <input type="submit" value="Відправити" />
+     </form>
+     <a href="/4">До списку предметів</a>
+</body>
+<html>
