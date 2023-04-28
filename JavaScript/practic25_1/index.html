@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="src/index.js"></script>
+</head>
+
+<body ng-controller="myController">
+  <h4>Number 1</h4>
+  <p>Name: <span ng-bind="name"></span></p>
+  <p>Surname: <span ng-bind="surname"></span></p>
+  <p>Age: <span ng-bind="age"></span></p>
+  <hr color="blue"/>
+
+  <h4>Number 2</h4>
+  <p>{{ userInfo }}</p>
+  <hr color="yellow"/>
+
+  <h4>Number 3</h4>
+  <ul>
+		<li ng-repeat="language in languages">{{ language }}</li>
+	</ul>
+  <ul>
+		<li ng-repeat="(city, country) in countries">{{ city }}: {{ country }}</li>
+	</ul>
+  <hr color="blue"/>
+
+  <h4>Number 4</h4>
+  <ul>
+    <li ng-repeat="worker in workers">
+      Name: {{worker.name}}, Age: {{worker.age}}, Salary: {{worker.salary}}
+    </li>
+  </ul>
+  <hr color="yellow"/>
+
+  <h4>Number 5</h4>
+  <p>{{ name }}</p>
+  <a href="#" ng-click="changeName()" ng-click="scrollToTop($event)">Change name</a>
+  <hr color="blue"/>
+
+  <h4>Number 6</h4>
+  <p>Name: <span ng-bind="name6"></span></p>
+  <p>Surname: <span ng-bind="surname6"></span></p>
+  <p>Age: <span ng-bind="age6"></span></p>
+  <a href="#" ng-click="changeName6()" ng-click="scrollToTop($event)">Change name</a>
+
+  <a href="#" ng-click="changeSurname6()" ng-click="scrollToTop($event)">Change surname</a>
+
+  <a href="#" ng-click="changeAge6()" ng-click="scrollToTop($event)">Change age</a>
+  <hr color="yellow"/>
+
+  <h4>Number 7</h4>
+  <ul>
+    <li ng-repeat="language7 in languages7">{{ language7 }}</li>
+  </ul>
+  <a href="#" ng-click="changeLanguage7()" ng-click="scrollToTop($event)">Change language</a>
+  <hr color="blue"/>
+
+  <h4>Number 8</h4>
+  <ul>
+    <li ng-repeat="language8 in languages8">{{ language8 }}</li>
+  </ul>
+  <a href="#" ng-click="addLanguage8()" ng-click="scrollToTop($event)">Add language the END</a>
+  <hr color="yellow"/>
+
+  <h4>Number 9</h4>
+  <ul>
+		<li ng-repeat="language9 in languages9">{{language9}}</li>
+	</ul>
+	<a href="#" ng-click="addLanguage9()" ng-click="scrollToTop($event)">Add language the START</a>
+  <hr color="blue"/>
+
+  <h4>Number 10</h4>
+  <ul>
+		<li ng-repeat="language10 in languages10">{{ language10 }}</li>
+	</ul>
+	<a href="#" ng-click="removeLanguage10('php')" ng-click="scrollToTop($event)">Remove php</a>
+  <hr color="yellow"/>
+
+
+  <h4>Number 11</h4>
+  <ul>
+    <li ng-repeat="language11 in languages11">{{ language11 }}</li>
+  </ul>
+  <a href="#" ng-click="removeLanguage11('html')" ng-click="scrollToTop($event)">Remove html</a>
+  <hr color="blue"/>
+
+
+
+
+
+</body>
+
+</html>
