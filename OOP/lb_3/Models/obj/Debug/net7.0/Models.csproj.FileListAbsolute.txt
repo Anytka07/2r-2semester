@@ -1,0 +1,14 @@
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\Models.csproj.AssemblyReference.cache
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\Models.GeneratedMSBuildEditorConfig.editorconfig
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\Models.AssemblyInfoInputs.cache
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\Models.AssemblyInfo.cs
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\Models.csproj.CoreCompileInputs.cache
+D:\Нова папка (2)\EF_02\Football_Betting\Models\bin\Debug\net7.0\Models.deps.json
+D:\Нова папка (2)\EF_02\Football_Betting\Models\bin\Debug\net7.0\Models.runtimeconfig.json
+D:\Нова папка (2)\EF_02\Football_Betting\Models\bin\Debug\net7.0\Models.dll
+D:\Нова папка (2)\EF_02\Football_Betting\Models\bin\Debug\net7.0\Models.pdb
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\Models.dll
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\refint\Models.dll
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\Models.pdb
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\Models.genruntimeconfig.cache
+D:\Нова папка (2)\EF_02\Football_Betting\Models\obj\Debug\net7.0\ref\Models.dll

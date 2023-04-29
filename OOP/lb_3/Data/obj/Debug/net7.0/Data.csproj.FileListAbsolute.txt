@@ -1,0 +1,17 @@
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\Data.csproj.AssemblyReference.cache
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\Data.AssemblyInfoInputs.cache
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\Data.AssemblyInfo.cs
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\Data.csproj.CoreCompileInputs.cache
+D:\Нова папка (2)\EF_02\Football_Betting\Data\bin\Debug\net7.0\Data.deps.json
+D:\Нова папка (2)\EF_02\Football_Betting\Data\bin\Debug\net7.0\Data.runtimeconfig.json
+D:\Нова папка (2)\EF_02\Football_Betting\Data\bin\Debug\net7.0\Data.dll
+D:\Нова папка (2)\EF_02\Football_Betting\Data\bin\Debug\net7.0\Data.pdb
+D:\Нова папка (2)\EF_02\Football_Betting\Data\bin\Debug\net7.0\Models.dll
+D:\Нова папка (2)\EF_02\Football_Betting\Data\bin\Debug\net7.0\Models.pdb
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\Data.csproj.CopyComplete
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\Data.dll
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\refint\Data.dll
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\Data.pdb
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\Data.genruntimeconfig.cache
+D:\Нова папка (2)\EF_02\Football_Betting\Data\obj\Debug\net7.0\ref\Data.dll
