@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="src/index.js"></script>
+</head>
+
+<body ng-controller="myController">
+  <h4>Number 1</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <span ng-repeat="num in numbers">{{num + 3}} </span>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 2</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <span ng-repeat="num in numbers">{{num*num}} </span>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 3</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <ul>
+      <li ng-repeat="num in num">{{num}}</li>
+    </ul>
+    <button ng-click="reverse()">Reverse List</button>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 4</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <ul>
+      <li ng-repeat="num in numbers">{{num}}</li>
+    </ul>
+    <button ng-click="sort()">Sort List</button>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 5</h4>
+  <ul ng-app="myApp" ng-controller="myController">
+    <li ng-repeat="language in languages">
+      <a href="#" ng-click="addPlusSign($index)">{{language}}</a>
+    </li>
+  </ul>
+  <hr color="blue"/>
+
+  <h4>Number 6</h4>
+  <ul ng-app="myApp" ng-controller="myController">
+    <li ng-repeat="user in users">{{user}}</li>
+    <li><a href="#" ng-click="addUser()" ng-show="hasMoreUsers()">Додати ще</a></li>
+  </ul>
+  <hr color="yellow"/>
+
+  <h4>Number 7</h4>
+  <table>
+    <tr ng-repeat="row in rows">
+      <td ng-repeat="cell in row">{{cell}}</td>
+    </tr>
+  </table>
+  <hr color="blue"/>
+
+  <h4>Number 8</h4>
+  <ul>
+    <li ng-repeat="(country, cities) in workers">
+      {{country}}:
+      <span ng-repeat="city in cities">{{city}} </span>
+    </li>
+  </ul>
+  <hr color="yellow"/>
+
+
+</body>
+
+</html>
