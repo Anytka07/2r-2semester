@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="src/index.js"></script>
+</head>
+
+<body ng-controller="myController">
+  <h4>Number 1</h4>
+  <label>Введіть число:</label>
+    <input type="number" ng-model="num">
+    <p>Квадрат числа {{num}} дорівнює {{num * num}}</p>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 2</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <input type="number" ng-model="number" ng-blur="calculateSquare()">
+    <p>Квадрат числа {{number}} дорівнює {{square}}</p>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 3</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <ul>
+      <li ng-repeat="country in countries">{{country}}</li>
+    </ul>
+    <input type="text" ng-model="newCountry" ng-blur="addCountry()">
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 4</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <input type="checkbox" ng-model="checked">
+    <a href="#" ng-click="checked=true">Позначений</a>
+    <a href="#" ng-click="checked=false">Не позначений</a>
+
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 5</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <input type="checkbox" ng-model="checked">
+    <a href="#" ng-click="checked=!checked">Зміна</a>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 6</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <label>
+      <input type="checkbox" ng-model="checkbox1"> Checkbox 1
+    </label>
+    <br>
+    <label>
+      <input type="checkbox" ng-model="checkbox2" ng-init="checkbox2=checkbox1"> Checkbox 2
+    </label>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 7</h4>
+  <ul>
+    <li ng-repeat="(key, value) in courses">
+      <input type="checkbox" ng-model="courses[key]" ng-true-value="true" ng-false-value="false">
+      {{key}}
+    </li>
+  </ul>
+  <hr color="blue"/>
+
+
+
+</body>
+
+</html>
