@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="src/index.js"></script>
+</head>
+
+<body ng-controller="myController">
+  <h4>Number 1</h4>
+  <div>
+    <h3>List country:</h3>
+    <ul>
+        <li ng-repeat="country in countries">{{country}}</li>
+    </ul>
+
+    <h3>Add country:</h3>
+    <input type="text" ng-model="newCountry">
+    <button ng-click="addCountry1()">Add</button>
+
+    <h3>Delete country:</h3>
+    <input type="number" ng-model="deleteCountryIndex">
+    <button ng-click="deleteCountry1()">Delete</button>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 2</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <ul>
+      <li ng-repeat="country in countries">{{country}}</li>
+    </ul>
+
+    <input type="text" ng-model="newCountry">
+    <button ng-click="addCountry()">Add country</button>
+    <input type="text" ng-model="searchCountry">
+    <button ng-click="deleteCountry()">Delete country</button>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 3</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <input type="checkbox" ng-model="filterCountries">Show countries with a letter 'i'<br><br>
+  <ul>
+    <li ng-repeat="country in countries | filter: (filterCountries ? 'i' : '')">{{country}}</li>
+  </ul>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 4</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <input type="text" ng-model="checkboxNumbers" ng-change="updateCheckboxes()">
+    <div ng-repeat="(key, value) in checkboxes">
+      <input type="checkbox" ng-model="value" ng-checked="checkboxNumbers.indexOf(key.toString()) !== -1">
+      {{key}}
+    </div>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 5</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <ul>
+      <li ng-repeat="user in users">{{user}}</li>
+    </ul>
+    <button ng-click="moveUser()">Move User</button>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 6</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <ul>
+      <li ng-repeat="number in numbers">{{ number }}</li>
+    </ul>
+    <p>Sum: {{ sum }}</p>
+    <input type="number" ng-model="newNumber">
+    <button ng-click="addNumber()">Add</button>
+  </div>
+
+  <hr color="yellow"/>
+
+
+
+</body>
+
+</html>
