@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="src/index.js"></script>
+</head>
+<style>
+  .red {
+    color: red;
+  }
+  .crossed-out {
+    text-decoration: line-through;
+  }
+</style>
+<body ng-controller="myController">
+  <h4>Number 1</h4>
+  <div>
+    <label>
+      <input type="checkbox" ng-model="showParagraph"> Show text
+    </label>
+    <p ng-show="showParagraph">This paragraph is visible</p>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 2</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <label>
+      <input type="checkbox" ng-model="isVisible" ng-init="isVisible=true">
+      Show text
+    </label>
+    <p ng-show="isVisible">This paragraph is visible</p>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 3</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <a href="#" ng-click="hideParagraph()">Hide paragraph </a>
+    <a href="#" ng-click="showParagraph()">Show paragraph</a>
+    <p ng-show="isVisible">This paragraph is visible</p>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 4</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <a href="#" ng-click="toggleParagraph()">Hide/show paragraphц</a>
+    <p ng-show="isVisible">This paragraph is visible</p>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 5</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <label>
+      <input type="checkbox" ng-model="showParagraph1"> Paragraph 1
+    </label>
+    <p ng-show="showParagraph1">This is the first paragraph.</p>
+
+    <label>
+      <input type="checkbox" ng-model="showParagraph2"> Paragraph 2
+    </label>
+    <p ng-show="showParagraph2">This is the second paragraph.</p>
+
+    <label>
+      <input type="checkbox" ng-model="showParagraph3"> Paragraph 3
+    </label>
+    <p ng-show="showParagraph3">This is the third paragraph.</p>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 6</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <input type="checkbox" ng-model="isChecked">
+    <p ng-style="isChecked && {'color': 'red'} || {'color': ''}">
+      This text may be red</p>
+  </div>
+
+  <hr color="yellow"/>
+
+  <h4>Number 7</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <label>
+      <input type="checkbox" ng-model="isRed"> Add red color to the paragraph
+    </label>
+    <label>
+      <input type="checkbox" ng-model="isCrossedOut"> Cross out the text of the paragraph
+    </label>
+    <p ng-class="{red: isRed, 'crossed-out': isCrossedOut}">This paragraph may be red and/or crossed out</p>
+
+  </div>
+
+  <hr color="blue"/>
+
+  <h4>Number 8</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <select ng-model="selectedCountry">
+      <option ng-repeat="country in countries">{{country}}</option>
+    </select>
+  </div>
+
+  <hr color="yellow"/>
+
+  <h4>Number 9</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <select ng-model="selectedCity" ng-change="updateInput()">
+      <option ng-repeat="city in cities">{{city}}</option>
+    </select>
+    <input type="text" ng-model="selectedCityInput">
+  </div>
+
+  <hr color="blue"/>
+
+  <h4>Number 10</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <select ng-model="selectedCountry1" ng-options="country1.name for country1 in countries1">
+      <option value="">-- Виберіть країну --</option>
+    </select>
+    <select ng-model="selectedCity1" ng-options="city1.name for city1 in selectedCountry1.cities1">
+      <option value="">-- Виберіть місто --</option>
+    </select>
+  </div>
+
+  <hr color="yellow"/>
+
+</body>
+
+</html>
