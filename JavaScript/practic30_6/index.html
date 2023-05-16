@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+
+<head>
+  <meta charset="utf-8">
+  <title>AngularJS</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="src/index.js"></script>
+</head>
+
+<body ng-controller="myController">
+  <h4>Number 1</h4>
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users">
+          <td>{{ user.name | uppercase }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 2</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users">
+          <td>{{ user.name | lowercase }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 3</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Date of Birth</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users2">
+          <td>{{ user.name }}</td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.dateOfBirth | date:'dd.MM.yyyy' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 4</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users3 | orderBy:'age'">
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr color="yellow"/>
+
+  <h4>Number 5</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users5 | orderBy:'-age'">
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <hr color="blue"/>
+
+  <h4>Number 6-7</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <input type="checkbox" ng-model="ascendingSort"> Сортувати за зростанням<br><br>
+    <select ng-model="sortBy">
+      <option value="name">Ім'я</option>
+      <option value="age">Вік</option>
+    </select><br><br>
+    <table>
+      <thead>
+        <tr>
+          <th>Ім'я</th>
+          <th>Вік</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users6 | orderBy: sortBy:ascendingSort">
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr color="yellow"/>
+
+  <h4>Number 8-9</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <h3>Перші 3 користувачі:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Ім'я</th>
+          <th>Вік</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users8 | limitTo:3">
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h3>Наступні 3 користувачі:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Ім'я</th>
+          <th>Вік</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users8 | limitTo:3:3">
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr color="blue"/>
+
+  <h4>Number 10</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <label>Кількість користувачів:</label>
+    <input type="number" ng-model="numUsers" min="1" max="{{ users.length }}" />
+
+    <label>Початковий індекс:</label>
+    <input type="number" ng-model="startIndex" min="0" max="{{ users.length - 1 }}" />
+
+    <h3>Користувачі:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Ім'я</th>
+          <th>Вік</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users10 | limitTo:numUsers:startIndex">
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr color="yellow"/>
+
+  <h4>Number 11</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <h3>Користувачі з буквою 'а' у імені:</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Ім'я</th>
+          <th>Вік</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users11 | filter: hasLetterA">
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr color="blue"/>
+
+  <h4>Number 12</h4>
+  <div ng-app="myApp" ng-controller="myController">
+    <h3>Користувачі:</h3>
+    <input type="text" ng-model="searchText" placeholder="Введіть текст" />
+
+    <table>
+      <thead>
+        <tr>
+          <th>Ім'я</th>
+          <th>Вік</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="user in users12 | filter: searchText">
+          <td>{{ user.name }}</td>
+          <td>{{ user.age }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr color="yellow"/>
+
+</body>
+
+</html>
